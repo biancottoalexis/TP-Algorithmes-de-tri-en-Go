@@ -1,6 +1,13 @@
 package main
 
-func InsertionSortScores(players []Score) {
+func InsertionSortScores(players []Score) error {
+	if players == nil {
+		return ErrNilSlice
+	}
+	if len(players) == 0 {
+		return ErrEmptySlice
+	}
+
 	for i := 1; i < len(players); i++ {
 		valeur := players[i]
 		j := i - 1
@@ -10,9 +17,17 @@ func InsertionSortScores(players []Score) {
 		}
 		players[j+1] = valeur
 	}
+	return nil
 }
 
-func SelectionSortScores(players []Score) {
+func SelectionSortScores(players []Score) error {
+	if players == nil {
+		return ErrNilSlice
+	}
+	if len(players) == 0 {
+		return ErrEmptySlice
+	}
+
 	n := len(players)
 	for i := 0; i < n-1; i++ {
 		max := i
@@ -23,6 +38,7 @@ func SelectionSortScores(players []Score) {
 		}
 		players[i], players[max] = players[max], players[i]
 	}
+	return nil
 }
 
 func IsStable(players []Score) bool {

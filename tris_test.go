@@ -59,7 +59,7 @@ func BenchmarkMergeSort(b *testing.B) {
 		var resultat []int
 		b.Run(fmt.Sprintf("n=%d", n), func(b *testing.B) {
 			for i := 0; i < b.N; i++ {
-				resultat = MergeSort(base)
+				resultat, _ = MergeSort(base)
 			}
 		})
 		_ = resultat

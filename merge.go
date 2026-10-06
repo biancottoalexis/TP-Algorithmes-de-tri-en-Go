@@ -1,12 +1,23 @@
 package main
 
-func MergeSort(scores []int) []int {
+func MergeSort(scores []int) ([]int, error) {
+	if scores == nil {
+		return nil, ErrNilSlice
+	}
+	if len(scores) == 0 {
+		return nil, ErrEmptySlice
+	}
+	sortedScores := mergeSort(scores)
+	return sortedScores, nil
+}
+
+func mergeSort(scores []int) []int {
 	if len(scores) <= 1 {
 		return scores
 	}
 	middle := len(scores) / 2
-	leftPacket := MergeSort(scores[:middle])
-	rightPacket := MergeSort(scores[middle:])
+	leftPacket := mergeSort(scores[:middle])
+	rightPacket := mergeSort(scores[middle:])
 	return merge(leftPacket, rightPacket)
 }
 

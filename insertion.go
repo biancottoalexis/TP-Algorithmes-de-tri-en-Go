@@ -1,6 +1,13 @@
 package main
 
-func InsertionSort(scores []int) {
+func InsertionSort(scores []int) error {
+	if scores == nil {
+		return ErrNilSlice
+	}
+	if len(scores) == 0 {
+		return ErrEmptySlice
+	}
+
 	for i := 1; i < len(scores); i++ {
 		value := scores[i]
 		j := i - 1
@@ -10,4 +17,5 @@ func InsertionSort(scores []int) {
 		}
 		scores[j+1] = value
 	}
+	return nil
 }

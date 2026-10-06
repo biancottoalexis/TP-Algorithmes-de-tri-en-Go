@@ -1,8 +1,14 @@
 package main
 
-func QuickSort(scores []int) {
+func QuickSort(scores []int) error {
+	if scores == nil {
+		return ErrNilSlice
+	}
+	if len(scores) == 0 {
+		return ErrEmptySlice
+	}
 	if len(scores) <= 1 {
-		return
+		return nil
 	}
 
 	lastIndex := len(scores) - 1
@@ -20,4 +26,5 @@ func QuickSort(scores []int) {
 
 	QuickSort(scores[:partitionIndex])
 	QuickSort(scores[partitionIndex+1:])
+	return nil
 }
